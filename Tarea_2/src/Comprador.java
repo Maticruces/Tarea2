@@ -1,3 +1,8 @@
+/**
+ * @Comprador interactua con el expendedor
+ * @sonido recibe lo que se esta consumiendo
+ * @vuelto hace el pago
+ **/
 class Comprador{
     private String sonido;
     private int vuelto;
