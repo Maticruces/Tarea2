@@ -1,5 +1,7 @@
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,7 +33,7 @@ public class Ventana extends JFrame{
         setVisible(true);
     }
 
-    private void setSize(int i, int i1) {
+    public void setSize(int i, int i1) {
     }
 
     public void crearGUI(){
@@ -135,7 +137,7 @@ public class Ventana extends JFrame{
                         exp.IngresaMoneda(com.getMonedabyValor(new Moneda100()));
                     } catch (PagoIncorrectoException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
-                    } catch (NohayMonedaException ex) {
+                    } catch (PagoIncorrectoException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
 
@@ -145,16 +147,16 @@ public class Ventana extends JFrame{
                             exp.IngresaMoneda(com.getMonedabyValor(new Moneda500()));
                         } catch (PagoIncorrectoException ex) {
                             JOptionPane.showMessageDialog(null, ex.getMessage());
-                        } catch (NohayMonedaException ex) {
+                        } catch (PagoIncorrectoException ex) {
                             JOptionPane.showMessageDialog(null, ex.getMessage());
                         }
 
                     }else{
                         try {
-                            exp.IngresaMoneda(com.getMonedabyValor(new Moneda1000()));
+                            exp.IngresaMoneda(com.getMonedabyValor(new Billete1000()));
                         } catch (PagoIncorrectoException ex) {
                             JOptionPane.showMessageDialog(null, ex.getMessage());
-                        } catch (NohayMonedaException ex) {
+                        } catch (PagoIncorrectoException ex) {
                             JOptionPane.showMessageDialog(null, ex.getMessage());
                         }
                     }
@@ -206,7 +208,7 @@ public class Ventana extends JFrame{
                 if (act.getBounds().x == 3*escala/8&&!com.BebidaInCom()){
                     try {
                         com.recojeBebida();
-                    } catch (NoHayBebidaException ex) {
+                    } catch (ProductoSinStockException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                     drinkBebida.setToolTipText("Beber Bebida con numero de serie: " + com.getBebida().getSerie());
@@ -252,13 +254,13 @@ public class Ventana extends JFrame{
                     try {
                         com.comprarBebida(numpad);
                         numpad = 0;
-                    } catch (NoHayBebidaException ex) {
+                    } catch (ProductoSinStockException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     } catch (PagoIncorrectoException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     } catch (PagoInsuficienteException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
-                    } catch (YaComproException ex) {
+                    } catch (ProductoSinStockException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                     repaint();
