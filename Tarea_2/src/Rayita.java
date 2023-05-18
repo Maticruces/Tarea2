@@ -1,3 +1,4 @@
+
 public class Rayita extends Producto{
     public Rayita(int s){ super(s); }
 

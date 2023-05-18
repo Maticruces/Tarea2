@@ -21,7 +21,7 @@ public class Expendedor{
         this.precioB = precioBebidas;
         this.precioD = precioDulces;
 
-        for (int i = 0; i < numProductos; i++) {
+        for (int i = 0; i < numProductos; i++){
             Producto cc = new CocaCola(100 + i);
             coca.addProducto(cc);
             Producto sp = new Sprite(200 + i);
@@ -29,51 +29,60 @@ public class Expendedor{
             Producto s8 = new Super8( 300 + i);
             super8.addProducto(s8);
             Producto rt = new rayita( 400 + i);
-            rallita.addProducto(rt);
+            rayita.addProducto(rt);
         }
     }
-    public Producto comprarProducto(Moneda m, int n) {
+    public Producto comprarProducto(Moneda m, int n) throws ProductoNoDisponibleExcepcion, PagoIncorrectoExcepcion, PagoInsuficienteExcepcion {
         this.codigo = n;
 
         if (m != null && m.getValor() >= precioB) {
             switch(n){
                 case 1: Producto cc = coca.getProducto();
-                if (cc != null) {
-                    for (int i = 0; i < (m.getValor() - precioB) / 100; i++) {
-                        Moneda a = new Moneda100();
-                        monVu.addMoneda(a);
+                    if (cc != null) {
+                        throw new ProductoNoDisponibleExcepcion("Producto no disponible\n");
+
+                        for (int i = 0; i < (m.getValor() - precioB) / 100; i++) {
+                            Moneda a = new Moneda100();
+                            monVu.addMoneda(a);
+                        }
+                        return cc;
                     }
-                    return cc;
-                }
                 case 2: Producto sp = sprite.getProducto();
-                if (sp != null) {
+                    if (sp != null) {
+                        throw new ProductoNoDisponibleExcepcion("Producto no disponible\n");
 
-                    for (int i = 0; i < (m.getValor() - precioB) / 100; i++) {
-                        Moneda a = new Moneda100();
-                        monVu.addMoneda(a);
+                        for (int i = 0; i < (m.getValor() - precioB) / 100; i++) {
+                            Moneda a = new Moneda100();
+                            monVu.addMoneda(a);
+                        }
+                        return sp;
                     }
-                    return sp;
-                }
                 case 3: Producto s8 = super8.getProducto();
-                if (s8 != null) {
+                    if (s8 != null) {
+                        throw new ProductoNoDisponibleExcepcion("Producto no disponible\n");
 
-                    for (int i = 0; i < (m.getValor() - precioD) / 100; i++) {
-                        Moneda a = new Moneda100();
-                        monVu.addMoneda(a);
+                        for (int i = 0; i < (m.getValor() - precioD) / 100; i++) {
+                            Moneda a = new Moneda100();
+                            monVu.addMoneda(a);
+                        }
+                        return s8;
                     }
-                    return s8;
-                }
                 case 4: Producto rt = rayita.getProducto();
-                if (rt != null) {
+                    if (rt != null) {
+                        throw new ProductoNoDisponibleExcepcion("Producto no disponible\n");
 
-                    for (int i = 0; i < (m.getValor() - precioD) / 100; i++) {
-                        Moneda a = new Moneda100();
-                        monVu.addMoneda(a);
+                        for (int i = 0; i < (m.getValor() - precioD) / 100; i++) {
+                            Moneda a = new Moneda100();
+                            monVu.addMoneda(a);
+                        }
+                        return rt;
                     }
-                    return rt;
+                case 5: int money = m.getValor();
+                    if(m == null) throw new PagoIncorrectoExcepcion("Pago Invalido");
+                case 6: if(m.getValor() < precioB || m.getValor()< precioD) throw new PagoInsuficienteExcepcion("Cantidad de dinero incorrecta");
                 }
             }
-        }else{
+        else{
             monVu.addMoneda(m);
             return null;
         }

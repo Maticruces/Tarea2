@@ -10,7 +10,7 @@ class Comprador{
         Producto a = exp.comprarProducto(m, cualProducto);
 
         if (a == null) sonido = null;
-        else sonido = a.beber();
+        else sonido = a.consumir();
         boolean b = true;
 
         while (b){
