@@ -15,7 +15,7 @@ public class Ventana extends JFrame{
     private Comprador com;
     public Ventana(){
         super();
-        escala = 240; //con 160 es 640x480 con 240 es 960x720 con 320 es 1280x960
+        escala = 320; //con 160 es 640x480 con 240 es 960x720 con 320 es 1280x960
 
         PP = new PanelPrincipal(escala);
         exp = PP.getExp();
@@ -37,7 +37,6 @@ public class Ventana extends JFrame{
     }
 
     public void crearGUI(){
-        /*
         ImageIcon imagen = new ImageIcon(getClass().getResource("BotonCocaCola.png"));
         JBPanelN1 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(3*escala/16, escala/16, Image.SCALE_SMOOTH)));JBPanelN1.setBounds(11*escala/8, 5*escala/8, 3*escala/16, escala/16);
 
@@ -58,7 +57,7 @@ public class Ventana extends JFrame{
 
         imagen = new ImageIcon(getClass().getResource("RefillS8.png"));
         refill3 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(3*escala/16, escala/16, Image.SCALE_SMOOTH)));refill3.setBounds(11*escala/8, 17*escala/16, 3*escala/16, escala/16);
-        */
+
         imagen = new ImageIcon(getClass().getResource("Moneda100.png"));
         moneda100 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(escala/4, escala/4, Image.SCALE_SMOOTH)));moneda100.setBounds(2*escala,  escala/4, escala/4, escala/4);
         moneda100.setBorderPainted(false);
