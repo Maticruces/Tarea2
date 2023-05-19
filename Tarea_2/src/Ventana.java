@@ -37,6 +37,7 @@ public class Ventana extends JFrame{
     }
 
     public void crearGUI(){
+        /*
         ImageIcon imagen = new ImageIcon(getClass().getResource("BotonCocaCola.png"));
         JBPanelN1 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(3*escala/16, escala/16, Image.SCALE_SMOOTH)));JBPanelN1.setBounds(11*escala/8, 5*escala/8, 3*escala/16, escala/16);
 
@@ -57,7 +58,7 @@ public class Ventana extends JFrame{
 
         imagen = new ImageIcon(getClass().getResource("RefillS8.png"));
         refill3 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(3*escala/16, escala/16, Image.SCALE_SMOOTH)));refill3.setBounds(11*escala/8, 17*escala/16, 3*escala/16, escala/16);
-
+        */
         imagen = new ImageIcon(getClass().getResource("Moneda100.png"));
         moneda100 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(escala/4, escala/4, Image.SCALE_SMOOTH)));moneda100.setBounds(2*escala,  escala/4, escala/4, escala/4);
         moneda100.setBorderPainted(false);
@@ -135,29 +136,25 @@ public class Ventana extends JFrame{
                 if (act.getBounds().y == 17*escala/16) {
                     try {
                         exp.IngresaMoneda(com.getMonedabyValor(new Moneda100()));
-                    } catch (PagoIncorrectoException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
-                    } catch (PagoIncorrectoException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                    } catch (NohayMonedaException | PagoIncorrectoException ex) {
+                        throw new RuntimeException(ex);
                     }
-
                 }else{
-                    if(act.getBounds().y == 23*escala/16){
+                    if(act.getBounds().y == 23*escala/16) {
                         try {
-                            exp.IngresaMoneda(com.getMonedabyValor(new Moneda500()));
-                        } catch (PagoIncorrectoException ex) {
-                            JOptionPane.showMessageDialog(null, ex.getMessage());
-                        } catch (PagoIncorrectoException ex) {
-                            JOptionPane.showMessageDialog(null, ex.getMessage());
+                            try {
+                                exp.IngresaMoneda(com.getMonedabyValor(new Moneda500()));
+                            } catch (NohayMonedaException | PagoIncorrectoException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        } catch (RuntimeException ex) {
+                            throw new RuntimeException(ex);
                         }
-
                     }else{
                         try {
                             exp.IngresaMoneda(com.getMonedabyValor(new Billete1000()));
-                        } catch (PagoIncorrectoException ex) {
-                            JOptionPane.showMessageDialog(null, ex.getMessage());
-                        } catch (PagoIncorrectoException ex) {
-                            JOptionPane.showMessageDialog(null, ex.getMessage());
+                        } catch (NohayMonedaException | PagoIncorrectoException ex) {
+                            throw new RuntimeException(ex);
                         }
                     }
                 }
@@ -169,9 +166,9 @@ public class Ventana extends JFrame{
 
                 if (com.getcountm500()==0) moneda500_2.setToolTipText("Actualmente no hay monedas de 500");
 
-                if (com.getcountm1000()>0) Billete1000_2.setToolTipText("El numero de serie de la primera moneda encontrada es " + com.getMonedaby(new Moneda1000()).getSerie());
+                if (com.getcountb1000()>0) Billete1000_2.setToolTipText("El numero de serie de la primera moneda encontrada es " + com.getMonedaby(new Billete1000()).getSerie());
 
-                if (com.getcountm1000()==0) Billete1000_2.setToolTipText("Actualmente no hay monedas de 1000");
+                if (com.getcountb1000()==0) Billete1000_2.setToolTipText("Actualmente no hay Billetes de 1000");
                 repaint();
             }
         });
@@ -180,8 +177,8 @@ public class Ventana extends JFrame{
         act.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (com.BebidaInCom()) {
-                    JOptionPane.showMessageDialog(null, "Bebiste una " + com.queBebiste());
+                if (com.ProductoEnCom()) {
+                    JOptionPane.showMessageDialog(null, "Bebiste una " + com.queProducto());
                     drinkBebida.setToolTipText("Espacio de Bebida del Cliente");
                 }else JOptionPane.showMessageDialog(null, "Aun no se a recogido una Bebida");
             }
@@ -191,12 +188,12 @@ public class Ventana extends JFrame{
         act.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                com.();
+                com.getVuelto();
                 if (com.getcountm100()>0) moneda100_2.setToolTipText("El numero de serie de la primera moneda encontrada es " + com.getMonedaby(new Moneda100()).getSerie());
 
                 if (com.getcountm500()>0) moneda500_2.setToolTipText("El numero de serie de la primera moneda encontrada es " + com.getMonedaby(new Moneda500()).getSerie());
 
-                if (com.getcountm1000()>0) Billete1000_2.setToolTipText("El numero de serie de la primera moneda encontrada es " + com.getMonedaby(new Moneda1000()).getSerie());
+                if (com.getcountb1000()>0) Billete1000_2.setToolTipText("El numero de serie de la primera moneda encontrada es " + com.getMonedaby(new Billete1000()).getSerie());
                 repaint();
             }
         });
@@ -205,13 +202,13 @@ public class Ventana extends JFrame{
         act.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (act.getBounds().x == 3*escala/8&&!com.BebidaInCom()){
+                if (act.getBounds().x == 3*escala/8&&!com.ProductoEnCom()){
                     try {
-                        com.recojeBebida();
-                    } catch (ProductoSinStockException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                        com.recojeProducto();
+                    } catch (NoHayProductoException ex) {
+                        throw new RuntimeException(ex);
                     }
-                    drinkBebida.setToolTipText("Beber Bebida con numero de serie: " + com.getBebida().getSerie());
+                    drinkBebida.setToolTipText("Beber Bebida con numero de serie: " + com.getProducto().getSerie());
                     repaint();
                 }
             }
@@ -252,16 +249,12 @@ public class Ventana extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if (act.getBounds().y == 13*escala/16) {
                     try {
-                        com.comprarBebida(numpad);
+                        com.comprarProducto(numpad);
                         numpad = 0;
-                    } catch (ProductoSinStockException ex) {
+                    } catch (PagoIncorrectoException | PagoInsuficienteException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
-                    } catch (PagoIncorrectoException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
-                    } catch (PagoInsuficienteException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
-                    } catch (ProductoSinStockException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                    } catch (YaComproException | NoHayProductoException | ProductoNoDisponibleExcepcion ex) {
+                        throw new RuntimeException(ex);
                     }
                     repaint();
                 }else{

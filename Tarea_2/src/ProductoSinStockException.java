@@ -1,6 +1,6 @@
 /***Por modificar***/
-public class ProductoSinStockExcepcion extends Excepcion{
-    public ProductoSinStockExcepcion(String errorMesagge){
+public class ProductoSinStockException extends Exception{
+    public ProductoSinStockException(String errorMesagge){
         super(errorMesagge);
     }
 }

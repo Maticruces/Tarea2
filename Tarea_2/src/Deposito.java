@@ -1,13 +1,37 @@
 import java.util.ArrayList;
-class Deposito{
+import java.awt.Graphics;
+import javax.swing.JPanel;
+
+class Deposito extends JPanel{
     private ArrayList<Producto> al;
-    public Deposito(){ al = new ArrayList<>(); }
+    int x, y, escala;
+    public Deposito(int posx, int posy, int tescale){
+        al = new ArrayList<Producto>();
+        escala = tescale;
+        x = posx;
+        y = posy;
+    }
     public void addProducto(Producto b){ al.add(b); }
     public Producto getProducto(){
+        if(al.isEmpty()) return new NoProducto(-1,0,0,0);
 
-        if(al.size()==0) return null;
+        else return al.remove(0);
+    }
+    public Producto getProductoEn(int n){
+        if (n>=al.size()) return new NoProducto(0,0,0,0);
 
-        Producto b = al.remove(0);
-        return b;
+        else return al.get(n);
+    }
+    public int getStorage(){
+        return al.size();
+    }
+    @Override
+    public void paint(Graphics g){
+        for (int i = 0; i < 5; i++) {
+            Producto b;
+            b = this.getProductoEn(i);
+            b.changeLocation(x + 3*escala/16 + (i*(3*escala/16)), y + 3*escala/16);
+            b.paint(g);
+        }
     }
 }

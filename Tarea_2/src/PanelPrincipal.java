@@ -18,10 +18,10 @@ public class PanelPrincipal extends JPanel{ //se ve en el centro de la ventana
         com.paint(g); //llama al metodo paint definido en el PanelComprador
         exp.paint(g); //llama al metodo paint definido en el PanelExpendedor
     }
-    public Expendedor getExpendedor(){
+    public Expendedor getExp(){
         return exp;
     }
-    public Comprador getComprador(){
+    public Comprador getCom(){
         return com;
     }
 }

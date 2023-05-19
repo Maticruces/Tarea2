@@ -11,16 +11,16 @@ class DepositoM{
             return (aux);
         }
     }
-    public Moneda takeMonedain(int n) {
-        if (mon.isEmpty()) return null;
+    public Moneda takeMonedain(int n){
+        if(mon.isEmpty()) return null;
         else{
             Moneda aux = null;
-            aux = mon.remove(0);
-            return (aux);
+            aux = mon.remove(n);
+            return(aux);
         }
     }
     public Moneda getMonedain(int n){
-        if (n >= mon.size()) return null;
+        if (n>=mon.size()) return null;
         else return mon.get(n);
     }
     public int check(){

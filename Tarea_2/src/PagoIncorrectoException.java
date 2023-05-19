@@ -1,7 +1,7 @@
 
 /***Por modificar***/
-public class PagoIncorrectoExcepcion extends Excepcion{
-    public PagoIncorrectoExcepcion(String errorMesagge){
+public class PagoIncorrectoException extends Exception{
+    public PagoIncorrectoException(String errorMesagge){
         super(errorMesagge);
     }
 }
