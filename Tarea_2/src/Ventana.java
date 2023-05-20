@@ -8,14 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class Ventana extends JFrame{
+    private JButton JBPanelN1,JBPanelN2,JBPanelN3,JBPanelN0, moneda100, moneda500, Billete1000, getvuelto, getProducto, moneda100_2, moneda500_2, Billete1000_2, drinkBebida, refill1,refill2,refill3;
     private PanelPrincipal PP;
-    private JButton JBPanelN1,JBPanelN2,JBPanelN3,JBPanelN0, moneda100, moneda500, Billete1000, getvuelto, getbebida, moneda100_2, moneda500_2, Billete1000_2, drinkBebida, refill1,refill2,refill3;
     private int escala, numpad = 0;
     private Expendedor exp;
     private Comprador com;
     public Ventana(){
         super();
-        escala = 320; //con 160 es 640x480 con 240 es 960x720 con 320 es 1280x960
+        escala = 160; //con 160 es 640x480 con 240 es 960x720 con 320 es 1280x960
 
         PP = new PanelPrincipal(escala);
         exp = PP.getExp();
@@ -32,10 +32,6 @@ public class Ventana extends JFrame{
         add(PP);
         setVisible(true);
     }
-
-    public void setSize(int i, int i1) {
-    }
-
     public void crearGUI(){
         ImageIcon imagen = new ImageIcon(getClass().getResource("BotonCocaCola.png"));
         JBPanelN1 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(3*escala/16, escala/16, Image.SCALE_SMOOTH)));JBPanelN1.setBounds(11*escala/8, 5*escala/8, 3*escala/16, escala/16);
@@ -88,28 +84,29 @@ public class Ventana extends JFrame{
         Billete1000_2.setToolTipText("Actualmente no hay monedas de 1000");
 
         getvuelto = new JButton();getvuelto.setBounds(5*escala/4, 7*escala/4, 3*escala/16, 3*escala/16);
-        getbebida = new JButton();getbebida.setBounds(3*escala/8, 17*escala/8, escala, escala/4);
-        getbebida.setBorderPainted(false);
-        getbebida.setContentAreaFilled(false);
-        getbebida.setToolTipText("Click para extraer Bebida en Maquina");
+        getProducto = new JButton();
+        getProducto.setBounds(3*escala/8, 17*escala/8, escala, escala/4);
+        getProducto.setBorderPainted(false);
+        getProducto.setContentAreaFilled(false);
+        getProducto.setToolTipText("Click para extraer Producto en Maquina");
 
-        getvuelto= new JButton();getvuelto.setBounds(5*escala/4, 7*escala/4, 3*escala/16, 3*escala/16);
+        getvuelto= new JButton();getvuelto.setBounds(5*escala/4, 7*escala/4, 3*escala/8, 3*escala/16);
         getvuelto.setBorderPainted(false);
-        getvuelto.setContentAreaFilled(false);
+        getvuelto.setContentAreaFilled(true);
         getvuelto.setToolTipText("Click para extraer Vuelto en Maquina");
 
         drinkBebida= new JButton();drinkBebida.setBounds(111*escala/32, 3*escala/8, 3*escala/16, escala/4);
         drinkBebida.setBorderPainted(false);
         drinkBebida.setContentAreaFilled(false);
-        drinkBebida.setToolTipText("Espacio de Bebida del Cliente");
+        drinkBebida.setToolTipText("Espacio de Producto del Cliente");
 
         evento_numpad(JBPanelN1);evento_numpad(JBPanelN2);evento_numpad(JBPanelN3);evento_numpad(JBPanelN0);
-        evento_moneda(moneda100);evento_moneda(moneda500);evento_moneda(Billete1000);evento_takeBebida(getbebida);
+        evento_moneda(moneda100);evento_moneda(moneda500);evento_moneda(Billete1000);evento_takeBebida(getProducto);
         evento_takeVuelto(getvuelto);evento_drinkBebida(drinkBebida);evento_moneda_2(moneda100_2);evento_moneda_2(moneda500_2);evento_moneda_2(Billete1000_2);
         evento_refill(refill1);evento_refill(refill2);evento_refill(refill3);
 
         add(JBPanelN1);add(JBPanelN2);add(JBPanelN3);add(JBPanelN0);add(moneda100);add(moneda500);add(Billete1000);
-        add(getbebida);add(getvuelto);add(moneda100_2);add(moneda500_2);add(Billete1000_2);add(drinkBebida);
+        add(getProducto);add(getvuelto);add(moneda100_2);add(moneda500_2);add(Billete1000_2);add(drinkBebida);
         add(refill1);add(refill2);add(refill3);
     }
     public void evento_refill(JButton act){
@@ -131,7 +128,7 @@ public class Ventana extends JFrame{
     public void evento_moneda_2(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) throws RuntimeException {
                 if (act.getBounds().y == 17*escala/16) {
                     try {
                         exp.IngresaMoneda(com.getMonedabyValor(new Moneda100()));
@@ -141,12 +138,8 @@ public class Ventana extends JFrame{
                 }else{
                     if(act.getBounds().y == 23*escala/16) {
                         try {
-                            try {
-                                exp.IngresaMoneda(com.getMonedabyValor(new Moneda500()));
-                            } catch (NohayMonedaException | PagoIncorrectoException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                        } catch (RuntimeException ex) {
+                            exp.IngresaMoneda(com.getMonedabyValor(new Moneda500()));
+                        } catch (NohayMonedaException | PagoIncorrectoException ex) {
                             throw new RuntimeException(ex);
                         }
                     }else{
