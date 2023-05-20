@@ -3,9 +3,7 @@ import javax.swing.JPanel;
 
 public abstract class Producto extends JPanel{
     private int numSerie;
-    private int x;
-    private int y;
-    private int Tamano;
+    private int x, y, Tamano;
     private JButton JB;
     public Producto(int numSerie, int x, int y, int escala){
         this.numSerie = numSerie;
@@ -19,9 +17,6 @@ public abstract class Producto extends JPanel{
     public void changeLocation(int x,int y){
         this.x = x;
         this.y = y;
-    }
-    public JButton getJButton(){
-        return JB;
     }
     public void setJButton(JButton act){
         JB = act;

@@ -2,18 +2,20 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Expendedor extends JPanel {
+    private Deposito coca, sprite, super8, rayita;
+    private DepositoM DVuelto, DIngreso;
+    private Producto ProductoComprado, Pcomparacion;
+
+    private boolean calcVuelto;
+
+    private int precioB, precioD;
+    private int escala, serie;
+    private int countm100, countm500, countb1000, Dinero;
+
     public static final int COCA = 1;
     public static final int SPRITE = 2;
     public static final int SUPER8 = 3;
     public static final int RAYITA = 4;
-    private Deposito coca, sprite, super8, rayita;
-    private DepositoM DVuelto, DIngreso;
-    private Producto ProductoComprado, Pcomparacion;
-    private boolean calcVuelto;
-    private int precioB, precioD;
-    private int escala;
-    private int serie;
-    private int countm100, countm500, countb1000, Dinero;
 
     public Expendedor(int numProductos, int precio, int x, int y, int escala) {
         super();
