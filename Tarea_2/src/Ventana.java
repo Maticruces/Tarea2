@@ -3,19 +3,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Ventana extends JFrame{
-    private JButton JBPanelN1,JBPanelN2,JBPanelN3,JBPanelN0, moneda100, moneda500, Billete1000, getvuelto, getProducto, moneda100_2, moneda500_2, Billete1000_2, drinkBebida, refill1,refill2,refill3;
+    private JButton JBPanelN1,JBPanelN2,JBPanelN3,JBPanelN0;
+    private JButton moneda100, moneda500, Billete1000, getvuelto, getProducto, moneda100_2, moneda500_2, Billete1000_2;
+    private JButton conProducto, refill1,refill2,refill3;
     private PanelPrincipal PP;
     private int escala, numpad = 0;
     private Expendedor exp;
     private Comprador com;
     public Ventana(){
         super();
-        escala = 160; //con 160 es 640x480 con 240 es 960x720 con 320 es 1280x960
+        escala = 240; //con 160 es 640x480 con 240 es 960x720 con 320 es 1280x960
 
         PP = new PanelPrincipal(escala);
         exp = PP.getExp();
@@ -39,7 +41,7 @@ public class Ventana extends JFrame{
         imagen = new ImageIcon(getClass().getResource("BotonSprite.png"));
         JBPanelN2 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(3*escala/16, escala/16, Image.SCALE_SMOOTH)));JBPanelN2.setBounds(11*escala/8, 11*escala/16, 3*escala/16, escala/16);
 
-        imagen = new ImageIcon(getClass().getResource("BotonSuper8.png"));
+        imagen = new ImageIcon(getClass().getResource("BotonRayita.png"));
         JBPanelN3 = new JButton(new ImageIcon(imagen.getImage().getScaledInstance(3*escala/16, escala/16, Image.SCALE_SMOOTH)));JBPanelN3.setBounds(11*escala/8, 6*escala/8, 3*escala/16, escala/16);
 
         imagen = new ImageIcon(getClass().getResource("BotonE.png"));
@@ -95,18 +97,21 @@ public class Ventana extends JFrame{
         getvuelto.setContentAreaFilled(true);
         getvuelto.setToolTipText("Click para extraer Vuelto en Maquina");
 
-        drinkBebida= new JButton();drinkBebida.setBounds(111*escala/32, 3*escala/8, 3*escala/16, escala/4);
-        drinkBebida.setBorderPainted(false);
-        drinkBebida.setContentAreaFilled(false);
-        drinkBebida.setToolTipText("Espacio de Producto del Cliente");
+        conProducto = new JButton();
+        conProducto.setBounds(111*escala/32, 3*escala/8, 3*escala/16, escala/4);
+        conProducto.setBorderPainted(false);
+        conProducto.setContentAreaFilled(false);
+        conProducto.setToolTipText("Espacio de Producto del Cliente");
 
         evento_numpad(JBPanelN1);evento_numpad(JBPanelN2);evento_numpad(JBPanelN3);evento_numpad(JBPanelN0);
-        evento_moneda(moneda100);evento_moneda(moneda500);evento_moneda(Billete1000);evento_takeBebida(getProducto);
-        evento_takeVuelto(getvuelto);evento_drinkBebida(drinkBebida);evento_moneda_2(moneda100_2);evento_moneda_2(moneda500_2);evento_moneda_2(Billete1000_2);
+        evento_moneda(moneda100);evento_moneda(moneda500);evento_moneda(Billete1000);
+        evento_takeProducto(getProducto);
+        evento_takeVuelto(getvuelto);
+        evento_conProducto(conProducto);evento_moneda_2(moneda100_2);evento_moneda_2(moneda500_2);evento_moneda_2(Billete1000_2);
         evento_refill(refill1);evento_refill(refill2);evento_refill(refill3);
 
         add(JBPanelN1);add(JBPanelN2);add(JBPanelN3);add(JBPanelN0);add(moneda100);add(moneda500);add(Billete1000);
-        add(getProducto);add(getvuelto);add(moneda100_2);add(moneda500_2);add(Billete1000_2);add(drinkBebida);
+        add(getProducto);add(getvuelto);add(moneda100_2);add(moneda500_2);add(Billete1000_2);add(conProducto);
         add(refill1);add(refill2);add(refill3);
     }
     public void evento_refill(JButton act){
@@ -165,14 +170,14 @@ public class Ventana extends JFrame{
             }
         });
     }
-    public void evento_drinkBebida(JButton act){
+    public void evento_conProducto(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (com.ProductoEnCom()) {
                     JOptionPane.showMessageDialog(null, "Bebiste una " + com.queProducto());
-                    drinkBebida.setToolTipText("Espacio de Bebida del Cliente");
-                }else JOptionPane.showMessageDialog(null, "Aun no se a recogido una Bebida");
+                    conProducto.setToolTipText("Espacio de Producto del Cliente");
+                }else JOptionPane.showMessageDialog(null, "Aun no se a recogido un Producto");
             }
         });
     }
@@ -190,7 +195,7 @@ public class Ventana extends JFrame{
             }
         });
     }
-    public void evento_takeBebida(JButton act){
+    public void evento_takeProducto(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -200,7 +205,7 @@ public class Ventana extends JFrame{
                     } catch (NoHayProductoException ex) {
                         throw new RuntimeException(ex);
                     }
-                    drinkBebida.setToolTipText("Beber Bebida con numero de serie: " + com.getProducto().getSerie());
+                    conProducto.setToolTipText("Consumir producto con numero de serie: " + com.getProducto().getSerie());
                     repaint();
                 }
             }

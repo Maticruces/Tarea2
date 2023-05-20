@@ -1,5 +1,5 @@
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -16,7 +16,6 @@ public class Comprador extends JPanel{
     private int valorvuelto = 0;
     private int escala;
     private int countm100, countm500, countb1000;
-
     public Comprador(Expendedor exp, int escala){
         countm100 = 0;countm500 = 0;countb1000 = 0;
         vuelto = new DepositoM();
@@ -43,9 +42,6 @@ public class Comprador extends JPanel{
         exp.setcountm500(0);
         countb1000 = countb1000 + exp.getcountb1000();
         exp.setcountb1000(0);
-    }
-    public int cuantoVuelto(){
-        return (valorvuelto);
     }
     public Producto getProducto(){ return producto; }
     public Moneda getMonedabyValor(Moneda m) throws NohayMonedaException{
@@ -78,7 +74,6 @@ public class Comprador extends JPanel{
     public int getcountm100(){return countm100;}
     public int getcountm500(){return countm500;}
     public int getcountb1000(){return countb1000;}
-
     public void comprarProducto(int Sabor) throws NoHayProductoException, PagoIncorrectoException, PagoInsuficienteException, YaComproException, ProductoNoDisponibleExcepcion {
         exp.comprarProducto(Sabor);
     }

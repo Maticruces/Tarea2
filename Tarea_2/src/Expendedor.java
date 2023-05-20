@@ -13,12 +13,13 @@ public class Expendedor extends JPanel {
     private int precioB, precioD;
     private int escala;
     private int serie;
-    private int countm100, countm500, countb1000, money;
+    private int countm100, countm500, countb1000, Dinero;
 
     public Expendedor(int numProductos, int precio, int x, int y, int escala) {
         super();
         serie = numProductos * 2;
-        countm100 = 0;countm500 = 0;countb1000 = 0;money = 0;
+        countm100 = 0;countm500 = 0;countb1000 = 0;
+        Dinero = 0;
         ProductoComprado = new NoProducto(0,0,0,0);Pcomparacion = new NoProducto(0,0,0,0);
 
         calcVuelto = false;
@@ -106,9 +107,8 @@ public class Expendedor extends JPanel {
     public void setcountb1000(int c) {
         countb1000 = c;
     }
-
     public void comprarProducto(int n) throws ProductoNoDisponibleExcepcion, PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException, YaComproException {
-        if (money < precioB || money < precioD) throw new PagoInsuficienteException("El Monto de Pago no es suficiente para realizar la transaccion");
+        if (Dinero < precioB || Dinero < precioD) throw new PagoInsuficienteException("El Monto de Pago no es suficiente para realizar la transaccion");
         if (ProductoComprado.getClass().getName() != Pcomparacion.getClass().getName()) throw new YaComproException("Ya hay una producto almacenada, Extraigala para proceder con otra compra");
 
         switch(n){
@@ -116,28 +116,28 @@ public class Expendedor extends JPanel {
                 ProductoComprado = coca.getProducto();
                 if (ProductoComprado.getClass().getName() == Pcomparacion.getClass().getName()) throw new NoHayProductoException("Actualmente no hay mas Cocacola, lo sentimos");
 
-                money = money - precioB;
+                Dinero = Dinero - precioB;
                 break;
             case 2:
                 ProductoComprado = sprite.getProducto();
                 if (ProductoComprado.getClass().getName() == Pcomparacion.getClass().getName())
                     throw new NoHayProductoException("Actualmente no hay mas Sprite, lo sentimos");
 
-                money = money - precioB;
+                Dinero = Dinero - precioB;
                 break;
             case 3:
                 ProductoComprado = super8.getProducto();
                 if (ProductoComprado.getClass().getName() == Pcomparacion.getClass().getName())
                     throw new NoHayProductoException("Actualmente no hay mas Super8, lo sentimos");
 
-                money = money - precioD;
+                Dinero = Dinero - precioD;
                 break;
             case 4:
                 ProductoComprado = rayita.getProducto();
                 if (ProductoComprado.getClass().getName() == Pcomparacion.getClass().getName())
                     throw new NoHayProductoException("Actualmente no hay mas Rayita, lo sentimos");
 
-                money = money - precioD;
+                Dinero = Dinero - precioD;
                 break;
             default:
                 throw new NoHayProductoException("No se a ingresado una seleccion de Producto");
@@ -145,18 +145,18 @@ public class Expendedor extends JPanel {
     }
     public Moneda getVuelto(){
         if (!calcVuelto) {
-            while(money > 0){
-                if (money-1000>=0) {
+            while(Dinero > 0){
+                if (Dinero -1000>=0) {
                     DVuelto.addMoneda(new Billete1000());
-                    money = money - 1000;
+                    Dinero = Dinero - 1000;
                 }else{
-                    if (money-500>=0) {
+                    if (Dinero -500>=0) {
                         DVuelto.addMoneda(new Moneda500());
-                        money = money - 500;
+                        Dinero = Dinero - 500;
                     }else{
-                        if (money-100>=0) {
+                        if (Dinero -100>=0) {
                             DVuelto.addMoneda(new Moneda100());
-                            money = money - 100;
+                            Dinero = Dinero - 100;
                         }
                     }
                 }
@@ -182,22 +182,18 @@ public class Expendedor extends JPanel {
             return aux;
         }
     }
-    public int getPrice(){
-        if (serie == 1 || serie == 2) return precioB;
-        else return precioD;
-    }
     public void IngresaMoneda(Moneda m) throws PagoIncorrectoException{
         if (m == null) throw new PagoIncorrectoException("Pago no valido");
         if (m.getValor() == 100){
-            money = money + 100;
+            Dinero = Dinero + 100;
             DIngreso.addMoneda(m);
         }
         else if (m.getValor() == 500){
-            money = money + 500;
+            Dinero = Dinero + 500;
             DIngreso.addMoneda(m);
         }
         else if (m.getValor() == 1000){
-            money = money + 1000;
+            Dinero = Dinero + 1000;
             DIngreso.addMoneda(m);
         }
     }
@@ -215,9 +211,10 @@ public class Expendedor extends JPanel {
 
         g.setColor(Color.red); //dinero que se tiene en pantalla
         g.setFont(new Font("Calibri", Font.PLAIN, escala/16));
-        g.drawString(Integer.toString(money), 11*escala/8, 9*escala/16);
+        g.drawString(Integer.toString(Dinero), 11*escala/8, 9*escala/16);
 
         g.setColor(Color.black);
+        g.drawRoundRect(escala/8,escala/8,12*escala/8, 20*escala/8, 20,20);
         g.fillRect(5*escala/16, 36*escala/16, 7*escala/8, escala/80); //salidas de producto linea
         g.fillRect(23*escala/16, (17*escala/8)+((15*escala/8-7*escala/4)/4), escala/16, escala/80);
     }

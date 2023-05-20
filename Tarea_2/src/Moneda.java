@@ -11,11 +11,6 @@ public abstract class Moneda extends JPanel{
     public String getSerie(){
         return(Integer.toHexString(this.hashCode()));
     }
-    public void ChangeLocationScale(int x,int y, int escala){
-        this.x = x;
-        this.y = y;
-        this.Tamano = escala;
-    }
     public int getx(){return x;}
     public int gety(){return y;}
     public int getescala(){return Tamano;}
