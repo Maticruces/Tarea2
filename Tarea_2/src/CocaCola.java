@@ -6,7 +6,6 @@ import javax.swing.JButton;
 /*
 *Esta clase es publica y representa el producto Coca-Cola,
 a esta hay vinculada una imagen .png de la misma
-*@autor: Matias Cruces Gomez
 *@param: x
 *@param: y
 *@param: escala
