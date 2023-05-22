@@ -1,4 +1,10 @@
 import java.util.ArrayList;
+
+/*
+*@DepositoM es una clase que interactua con Expendedor,
+usada como el deposito de monedas de esta.
+*@return: La cantidad sobrante de dinero segun sea el caso. 
+*/
 class DepositoM{
     private ArrayList<Moneda> mon;
     public DepositoM(){ mon = new ArrayList(); }
