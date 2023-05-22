@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-/***Esta clase se define como el billete de mil pesos,
+/*
+*@Billete1000 clase que se define como el billete de mil pesos,
 a este hay vinculado un png imagen del billete
-@return: (valor) 1000
-***/
+*@return: (valor) 1000
+*/
 
 class Billete1000 extends Moneda{
     public Billete1000(){ super(); }
