@@ -201,23 +201,24 @@ public class Expendedor extends JPanel {
     }
     public void paintexpendedor(Graphics g){
 
-        g.setColor(Color.blue); // expendedora
-        g.fillRoundRect(escala/8,escala/8,12*escala/8, 20*escala/8,40,40);
-
-        g.setColor(Color.black); // pantalla de productos
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 3*escala/16));
-        g.fillRoundRect(7*escala/32, 2*escala/8, 33*escala/32, 6*escala/4,60,60);
-
-        g.setColor(Color.MAGENTA); //salidas de producto
-        g.fillRoundRect(2*escala/8, 17*escala/8, escala, escala/4,35,35); //derecha abajo
-
-        g.setColor(Color.red); //dinero que se tiene en pantalla
-        g.setFont(new Font("Calibri", Font.PLAIN, escala/16));
-        g.drawString(Integer.toString(Dinero), 11*escala/8, 9*escala/16);
+        g.setColor(Color.blue);
+        g.fillRoundRect(escala/8,escala/8,12*escala/8, 20*escala/8,40,40); // expendedora color
 
         g.setColor(Color.black);
-        g.drawRoundRect(escala/8,escala/8,12*escala/8, 20*escala/8, 20,20);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 3*escala/16));
+        g.fillRoundRect(7*escala/32, 2*escala/8, 33*escala/32, 6*escala/4,60,60); // pantalla de productos
+        g.drawRoundRect(escala/8,escala/8,12*escala/8, 20*escala/8, 20,20); // linea de contorno de la maquina
         g.fillRect(5*escala/16, 36*escala/16, 7*escala/8, escala/80); //salidas de producto linea
-        g.fillRect(23*escala/16, (17*escala/8)+((15*escala/8-7*escala/4)/4), escala/16, escala/80);
+        g.fillRoundRect(7*escala/32, 21*escala/8, 3*escala/32, escala/4,20,20); //soporte izquierdo
+        g.fillRoundRect(22*escala/32, 21*escala/8, 2*escala/32, escala/6,10,10); //soporte central izquierdo
+        g.fillRoundRect(33*escala/32, 21*escala/8, 2*escala/32, escala/6,10,10); //soporte central derecho
+        g.fillRoundRect(47*escala/32, 21*escala/8, 3*escala/32, escala/4,20,20); //soporte derecho
+        g.fillRoundRect(11*escala/8, 8*escala/16, 6*escala/32, escala/12,0,0);
+        g.setColor(Color.MAGENTA);
+        g.fillRoundRect(2*escala/8, 17*escala/8, escala, escala/4,35,35); //salidas de producto
+
+        g.setColor(Color.green);
+        g.setFont(new Font("Calibri", Font.PLAIN, escala/16));
+        g.drawString(Integer.toString(Dinero), 11*escala/8, 9*escala/16); //dinero que se tiene en pantalla
     }
 }
