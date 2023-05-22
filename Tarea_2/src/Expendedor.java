@@ -1,6 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 
+/*
+*@Expendedor es una clase publica, la funciond e esta en si,
+es ser el expendedor de los productos, recibe monedas y/o billetes
+y llama a las funciones y metodos necesarios para entregar al comprador
+un producto de este mismo
+*@return: Retorna un void.
+*/
+
 public class Expendedor extends JPanel {
     private Deposito coca, sprite, super8, rayita;
     private DepositoM DVuelto, DIngreso;
