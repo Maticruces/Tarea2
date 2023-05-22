@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 *@param: posx
 *@param: posy
 *@param: tescale
-*@return: La cantidad de dinero sobrante
+*@return: 
 */
 
 class Deposito extends JPanel{
