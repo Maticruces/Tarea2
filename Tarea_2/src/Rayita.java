@@ -3,6 +3,16 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+/*
+*@Rayita es una clase que representa el producto del expendedor
+llamdo Rayita
+*@param: numSerie
+*@param: x
+*@param: y
+*@param: escala
+*@return: Rayita
+*/
+
 public class Rayita extends Producto{
     public Rayita(int numSerie, int x, int y, int escala){ super(numSerie, x, y, escala); }
     @Override
