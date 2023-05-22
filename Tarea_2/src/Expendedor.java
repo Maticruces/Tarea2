@@ -111,7 +111,7 @@ public class Expendedor extends JPanel {
     }
     public void comprarProducto(int n) throws ProductoNoDisponibleExcepcion, PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException, YaComproException {
         if (Dinero < precioB || Dinero < precioD) throw new PagoInsuficienteException("El Monto de Pago no es suficiente para realizar la transaccion");
-        if (ProductoComprado.getClass().getName() != Pcomparacion.getClass().getName()) throw new YaComproException("Ya hay una producto almacenada, Extraigala para proceder con otra compra");
+        if (ProductoComprado.getClass().getName() != Pcomparacion.getClass().getName()) throw new YaComproException("Ya hay un producto almacenado, Extraigalo para proceder con otra compra");
 
         switch(n){
             case 1:
@@ -213,7 +213,8 @@ public class Expendedor extends JPanel {
         g.fillRoundRect(22*escala/32, 21*escala/8, 2*escala/32, escala/6,10,10); //soporte central izquierdo
         g.fillRoundRect(33*escala/32, 21*escala/8, 2*escala/32, escala/6,10,10); //soporte central derecho
         g.fillRoundRect(47*escala/32, 21*escala/8, 3*escala/32, escala/4,20,20); //soporte derecho
-        g.fillRoundRect(11*escala/8, 8*escala/16, 6*escala/32, escala/12,0,0);
+        g.fillRoundRect(11*escala/8, 8*escala/16, 6*escala/32, escala/12,0,0); // panel de numeros (dinero en pantalla)
+        
         g.setColor(Color.MAGENTA);
         g.fillRoundRect(2*escala/8, 17*escala/8, escala, escala/4,35,35); //salidas de producto
 
