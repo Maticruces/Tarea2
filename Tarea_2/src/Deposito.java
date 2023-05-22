@@ -2,6 +2,14 @@ import java.util.ArrayList;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
+/*
+*@Deposito es una clase que interactua con Expendedor
+*@param: posx
+*@param: posy
+*@param: tescale
+*@return: La cantidad de dinero sobrante
+*/
+
 class Deposito extends JPanel{
     private ArrayList<Producto> al;
     int x, y, escala;
