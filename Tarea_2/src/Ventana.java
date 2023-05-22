@@ -7,6 +7,11 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+/*
+*@Ventana es una clase donde se reciben las interacciones entre metodos y funciones
+y esta las pone en funcionamiento.
+*/
+
 public class Ventana extends JFrame{
     private JButton JBPanelN1,JBPanelN2,JBPanelN3,JBPanelN0;
     private JButton moneda100, moneda500, Billete1000, getvuelto, getProducto, moneda100_2, moneda500_2, Billete1000_2;
