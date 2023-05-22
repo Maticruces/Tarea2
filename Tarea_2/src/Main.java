@@ -1,6 +1,6 @@
 
-/**
- *@author Matias, Diego
+/*
+ *@author: Matias, Diego
  *hace la funcion de llamar a la clase ventana para ejecutarla en pantalla
  */
 public class Main{
