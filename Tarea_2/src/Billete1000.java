@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-/***Esta clase se define como en billete de mil pesos
+/***Esta clase se define como el billete de mil pesos,
 a este hay vinculado un png imagen del billete
 @autor: Matias Cruces Gomez
 @return: (valor) 1000
