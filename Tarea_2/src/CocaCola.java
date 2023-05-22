@@ -3,6 +3,17 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+/*
+*Esta clase es publica y representa el producto Coca-Cola,
+a esta hay vinculada una imagen .png de la misma
+*@autor: Matias Cruces Gomez
+*@param: x
+*@param: y
+*@param: escala
+*@param: numSerie
+*@return:(Retorna en texto e imagen .png) CocaCola
+*/
+
 public class CocaCola extends Producto{
     public CocaCola(int numSerie, int x, int y, int escala){
         super(numSerie, x, y, escala);
