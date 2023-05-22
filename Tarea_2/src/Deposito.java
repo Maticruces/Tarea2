@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 *@param: posx
 *@param: posy
 *@param: tescale
-*@return: 
+*@return: Si hay o no un producto disponible 
 */
 
 class Deposito extends JPanel{
