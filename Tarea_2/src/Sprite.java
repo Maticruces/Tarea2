@@ -3,6 +3,16 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+/*
+*@Sprite es una clase que representa el producto del expendedor
+llamado Sprite
+*@param: numSerie
+*@param: x
+*@param: y
+*@param: escala
+*@return: Sprite
+*/
+
 public class Sprite extends Producto{
     public Sprite(int numSerie, int x, int y, int escala){
         super(numSerie, x, y, escala);
