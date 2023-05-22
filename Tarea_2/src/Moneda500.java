@@ -1,6 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
+/*
+*@Moneda500 es una clase que representa la moneda de valor 500
+*@return: (valor) 500
+*/
+
 class Moneda500 extends Moneda{
     public Moneda500(){ super(); }
     @Override
