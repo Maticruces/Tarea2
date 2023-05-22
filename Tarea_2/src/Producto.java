@@ -1,6 +1,14 @@
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/*
+*@Producto es una clase que representa los productos de la expendedora
+*@param: x
+*@param: y
+*@param: escala
+*@return: numSerie, el numero de serie y la posicion de cierto producto.
+*/
+
 public abstract class Producto extends JPanel{
     private int numSerie;
     private int x, y, Tamano;
