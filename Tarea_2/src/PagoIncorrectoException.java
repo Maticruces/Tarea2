@@ -1,5 +1,10 @@
 
-/***Por modificar***/
+/*
+*@PagoIncorrectoException es una clase que interactua con Exception
+esta es utilizada para enviar un mensaje de error en el caso de que
+el pago hecho en el expendedor sea incorrecto, dependiendo del caso
+hace llamado a una funcion u otra.
+*/
 public class PagoIncorrectoException extends Exception{
     public PagoIncorrectoException(String errorMesagge){
         super(errorMesagge);
