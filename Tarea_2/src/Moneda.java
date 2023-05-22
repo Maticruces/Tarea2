@@ -1,4 +1,10 @@
 import javax.swing.JPanel;
+
+/*
+*@Moneda es una clase que representa las monedas en general.
+*@return: Un puntero que da el tamaño de esta y su valor.
+*/
+
 public abstract class Moneda extends JPanel{
     private int x;
     private int y;
