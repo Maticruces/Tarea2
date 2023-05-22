@@ -1,6 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
+/*
+*@Moneda100 es una clase que representa la moneda de valor 100
+*@return: (valor) 100
+*/
+
 class Moneda100 extends Moneda {
     public Moneda100() {
         super();
