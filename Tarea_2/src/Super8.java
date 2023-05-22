@@ -3,6 +3,16 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+/*
+*@Super8 es una clase que representa el producto del expendedor
+llamado Super8
+*@param: numSerie
+*@param: x
+*@param: y
+*@param: escala
+*@return: Super8
+*/
+
 class Super8 extends Producto{
     public Super8(int numSerie, int x, int y, int escala){ super(numSerie, x, y, escala); }
     @Override
